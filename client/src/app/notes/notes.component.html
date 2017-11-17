@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Anonymous Notes</h1>
+  <form #myForm = 'ngForm' method="post">
+    Note:<br>
+    <textarea
+    type='text' 
+    name="note"
+    required
+    minlength="3"
+    [(ngModel)] = 'note_text'
+    #note='ngModel'
+    ></textarea>
+    <span style="color:red" *ngIf="!note.valid">note should be 3 characters long</span><br><br>
+    <button name="add" class="btn" (click)="onClick()" [disabled]="!myForm.valid">Add Quote</button>
+
+  </form>
+  <hr>
+  <p *ngFor="let note of notes">{{note.note}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{note.createdAt | date : 'medium'}}</p>
+
+</body>
+</html>
